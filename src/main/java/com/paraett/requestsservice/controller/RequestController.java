@@ -52,7 +52,7 @@ public class RequestController {
         return ResponseEntity.ok(request);
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Request> updateRequest(@PathVariable Long id, @RequestBody Request request) {
         Request updatedRequest = requestService.updateRequest(id, request);
 
