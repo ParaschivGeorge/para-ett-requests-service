@@ -39,7 +39,7 @@ public class RequestService {
     public Request updateRequest(Long id, Request request) {
         Optional<Request> optionalRequest = requestRepository.findById(id);
         if (optionalRequest.isPresent()) {
-            request.setId(optionalRequest.get().getId());
+            request.setId(id);
             return requestRepository.save(request);
         }
         throw new NotFoundException("id: " + id);
