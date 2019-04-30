@@ -30,7 +30,7 @@ public class RequestController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> createCompany(@RequestBody Request request) {
+    public ResponseEntity<Object> createRequest(@RequestBody Request request) {
         Request createdRequest = requestService.createRequest(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdRequest.getId())
                 .toUri();
