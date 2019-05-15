@@ -49,8 +49,9 @@ public class RequestService {
         Optional<Request> optionalRequest = requestRepository.findById(id);
         if (optionalRequest.isPresent()) {
             requestRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("id: " + id);
         }
-        throw new NotFoundException("id: " + id);
     }
 
     public void deleteRequests(Long companyId, Long managerId, Long userId) {
