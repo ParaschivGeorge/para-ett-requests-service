@@ -2,6 +2,7 @@ package com.paraett.requestsservice.service;
 
 import com.paraett.requestsservice.exception.NotFoundException;
 import com.paraett.requestsservice.model.entities.Request;
+import com.paraett.requestsservice.model.enums.RequestStatus;
 import com.paraett.requestsservice.repository.RequestRepository;
 import com.paraett.requestsservice.repository.RequestSpecifications;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class RequestService {
     }
 
     public Request createRequest(Request request) {
-        request.setApproved(false);
+        request.setStatus(RequestStatus.PENDING);
         return requestRepository.save(request);
     }
 

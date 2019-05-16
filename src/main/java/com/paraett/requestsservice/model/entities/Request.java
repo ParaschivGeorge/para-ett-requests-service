@@ -1,8 +1,10 @@
 package com.paraett.requestsservice.model.entities;
 
+import com.paraett.requestsservice.model.enums.RequestStatus;
 import com.paraett.requestsservice.model.enums.RequestType;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
 import java.util.Date;
 
 @Entity
@@ -23,13 +25,14 @@ public class Request {
     private Long managerId;
 
     @Column
+    @FutureOrPresent
     private Date date;
 
     @Column
     private RequestType type;
 
     @Column
-    private Boolean approved;
+    private RequestStatus status;
 
     public Request() {
     }
@@ -66,12 +69,12 @@ public class Request {
         this.type = type;
     }
 
-    public Boolean getApproved() {
-        return approved;
+    public RequestStatus getStatus() {
+        return status;
     }
 
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
+    public void setStatus(RequestStatus status) {
+        this.status = status;
     }
 
     public Long getCompanyId() {
