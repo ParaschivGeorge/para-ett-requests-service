@@ -1,6 +1,7 @@
 package com.paraett.requestsservice.repository;
 
 import com.paraett.requestsservice.model.entities.Request;
+import com.paraett.requestsservice.model.enums.RequestStatus;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 public class RequestSpecifications {
-    public static Specification<Request> findAllFiltered(Long companyId, Long managerId, Long userId, Boolean approved, Date minDate, Date maxDate) {
+    public static Specification<Request> findAllFiltered(Long companyId, Long managerId, Long userId, RequestStatus status, Date minDate, Date maxDate) {
         return new Specification<Request>() {
             @Override
             public Predicate toPredicate(Root<Request> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -30,8 +31,8 @@ public class RequestSpecifications {
                     predicateList.add(criteriaBuilder.equal(root.get("userId"), userId));
                 }
 
-                if (approved != null) {
-                    predicateList.add(criteriaBuilder.equal(root.get("approved"), approved));
+                if (status != null) {
+                    predicateList.add(criteriaBuilder.equal(root.get("status"), status));
                 }
 
                 if (minDate != null) {

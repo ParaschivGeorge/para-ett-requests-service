@@ -1,6 +1,7 @@
 package com.paraett.requestsservice.controller;
 
 import com.paraett.requestsservice.model.entities.Request;
+import com.paraett.requestsservice.model.enums.RequestStatus;
 import com.paraett.requestsservice.service.RequestService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,9 @@ public class RequestController {
 
     @GetMapping("")
     public ResponseEntity<List<Request>> getAllRequests(@RequestParam(required = false) Long companyId, @RequestParam(required = false) Long managerId,
-                                                     @RequestParam(required = false) Long userId, @RequestParam(required = false) Boolean approved,
+                                                     @RequestParam(required = false) Long userId, @RequestParam(required = false) RequestStatus status,
                                                      @RequestParam(required = false) Date minDate, @RequestParam(required = false) Date maxDate) {
-        List<Request> requests = requestService.getAllRequests(companyId, managerId, userId, approved, minDate, maxDate);
+        List<Request> requests = requestService.getAllRequests(companyId, managerId, userId, status, minDate, maxDate);
 
         return ResponseEntity.ok(requests);
     }

@@ -20,8 +20,8 @@ public class RequestService {
         this.requestRepository = requestRepository;
     }
 
-    public List<Request> getAllRequests(Long companyId, Long managerId, Long userId, Boolean approved, Date minDate, Date maxDate) {
-        return requestRepository.findAll(RequestSpecifications.findAllFiltered(companyId, managerId, userId, approved, minDate, maxDate));
+    public List<Request> getAllRequests(Long companyId, Long managerId, Long userId, RequestStatus status, Date minDate, Date maxDate) {
+        return requestRepository.findAll(RequestSpecifications.findAllFiltered(companyId, managerId, userId, status, minDate, maxDate));
     }
 
     public Request getRequest(Long id) {
